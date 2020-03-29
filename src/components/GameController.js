@@ -3,20 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import CreateGameForm from "./CreateGameForm";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import RedOrBlack from "./RedOrBlack";
 import Hand from "./Hand";
 import HigherOrLower from "./HigherOrLower";
+import InBetweenOrOutside from "./InBetweenOrOutside";
 
 const GameController = () => {
   const gameState = useSelector(state => state.gameReducer);
   const dispatch = useDispatch();
-
-  const nextTurn = () => {
-    dispatch({
-      type: 'INCREMENT_TURN',
-    });
-  };
 
   useEffect(() => {
     if (gameState.deck.length > 0 && !gameState.shuffled) {
@@ -49,12 +43,6 @@ const GameController = () => {
                   {gameState.round + 1}
                 </span>
               </Typography>
-              {gameState.round > 0 && (
-                <div className="hand-container">
-                  <Typography variant="body1">Current hand:</Typography>
-                  <Hand />
-                </div>
-              )}
             </div>
             {gameState.round === 0 && (
               <RedOrBlack/>
@@ -62,9 +50,15 @@ const GameController = () => {
             {gameState.round === 1 && (
               <HigherOrLower/>
             )}
-            <Button onClick={() => nextTurn()} variant="contained" color="primary">
-              Next turn
-            </Button>
+            {gameState.round === 2 && (
+              <InBetweenOrOutside/>
+            )}
+            {gameState.round > 0 && (
+              <div className="hand-container">
+                <Typography variant="body1">Current hand:</Typography>
+                <Hand />
+              </div>
+            )}
           </div>
         </Paper>
       )}

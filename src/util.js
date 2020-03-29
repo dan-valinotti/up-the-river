@@ -47,14 +47,27 @@ export function higherOrLower(isHigher, playerCards, dealerCard) {
 // Returns 1 if in between/outside, 0 if not, and -1 if equal to a card
 export function inBetweenOrOutside(isInBetween, playerCards, dealerCard) {
   let bounds = orderCards(playerCards);
-  if (dealerCard === bounds[0] || dealerCard === bounds[1]) {
-    return -1;
-  } else {
-    if (isInBetween) {
-      return (dealerCard > bounds[0]) && (dealerCard < bounds[1]) ? 1 : 0;
-    } else {
-      return (dealerCard < bounds[0]) || (dealerCard < bounds[1]) ? 1 : 0;
+  for (let i = 0; i < bounds.length; i++) {
+    // if (!isInBetween) {
+    //   console.log(dealerCard, bounds[i], dealerCard !== bounds[i]);
+    //   console.log(getCardValue(dealerCard) === getCardValue(bounds[i]));
+    // }
+    if (
+      dealerCard !== bounds[i]
+        &&
+      getCardValue(dealerCard) === getCardValue(bounds[i])
+    ) {
+      return -1;
     }
+  }
+  if (isInBetween) {
+    if (dealerCard === bounds[1]) {
+      return 1;
+    } return 0;
+  } else {
+    if (dealerCard !== bounds[1]) {
+      return 1;
+    } return 0;
   }
 }
 

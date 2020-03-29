@@ -33,3 +33,7 @@ export const guessHoL = (payload) => ({
   type: 'GUESS_HOL',
   payload,
 });
+export const guessInOrOut = (payload) => ({
+  type: 'GUESS_IN_OR_OUT',
+  payload,
+});

@@ -1,7 +1,7 @@
 import {
   cardValues,
   redOrBlack,
-  higherOrLower,
+  higherOrLower, inBetweenOrOutside,
 } from "../../util";
 
 function removePlayer(players, name) {
@@ -114,6 +114,16 @@ const gameReducer = (initState = {
       return {
         ...initState,
         currentResult: resultHol,
+      };
+    case 'GUESS_IN_OR_OUT':
+      const resultInOrOut = inBetweenOrOutside(
+        action.payload.inBetween,
+        action.payload.playerCards,
+        initState.dealerCard,
+      );
+      return {
+        ...initState,
+        currentResult: resultInOrOut,
       };
     default:
       return initState;

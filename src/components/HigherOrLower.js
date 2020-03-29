@@ -6,7 +6,7 @@ import Card from "./Card";
 import * as GameActions from "../redux/actions/gameActions";
 
 const HigherOrLower = (props) => {
-  const { dealCard, guessHigherOrLower } = props;
+  const { dealCard, guessHigherOrLower, nextTurn } = props;
 
   const guess = (isHigher) => {
     dealCard({ player: props.players[props.turn] });
@@ -21,8 +21,8 @@ const HigherOrLower = (props) => {
       <div style={{
         display: props.currentResult === null ? 'block' : 'none'
       }}>
-        <Typography variant="h6">
-          Red or Black?
+        <Typography variant="h5">
+          Higher or Lower?
         </Typography>
         <div className={"rob-btn-container"}>
           <Button
@@ -54,6 +54,11 @@ const HigherOrLower = (props) => {
           }
         </Typography>
       </div>
+      {props.currentResult !== null && (
+        <Button className={"next-turn-btn"} onClick={() => nextTurn()} variant="contained" color="primary">
+          Next turn
+        </Button>
+      )}
     </div>
   )
 };
@@ -68,6 +73,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   dealCard: (payload) => dispatch(GameActions.dealCard(payload)),
   guessHigherOrLower: (payload) => dispatch(GameActions.guessHoL(payload)),
+  nextTurn: () => dispatch(GameActions.incrementTurn()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HigherOrLower);
