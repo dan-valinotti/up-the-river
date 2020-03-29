@@ -1,5 +1,142 @@
+#form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#game-root {
+  padding: 2rem 1rem;
+}
+#game-container {
+  padding: 1rem;
+}
+.form-card {
+  padding: 1rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-left {
+  margin: 10px;
+  width: 66%;
+}
+
+.form-right {
+  padding: 10px;
+  width: 100%;
+}
+
+.form-right h6 {
+  font-weight: 300 !important;
+}
+
+.form-section-title {
+  padding-bottom: 1rem;
+  font-weight: 300 !important;
+}
+
+.submit {
+  margin-top: 2rem;
+}
+
+.game-title {
+  padding-bottom: 2rem;
+  font-weight: 700;
+}
+
+#rob {
+  margin: 2rem 0;
+}
+#hol {
+  margin: 2rem 0;
+}
+
+#red-btn {
+  background-color: red;
+  margin-right: 0.5rem;
+}
+#black-btn {
+  background-color: black;
+  margin-left: 0.5rem;
+}
+#green-btn {
+  background-color: green;
+  margin-right: 0.5rem;
+}
+
+.card-display {
+  margin: 0 0.5rem;
+}
+
+.card-container {
+  height: inherit;
+}
+
+.card-container {
+  height: 100%;
+  width: auto;
+}
+
+.result-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container img {
+  width: 100%;
+  height: inherit;
+}
+
+.result-text {
+  padding-top: 1rem;
+}
+
+.hand-container {
+  margin-top: 1rem;
+}
+
+.hand-container p {
+  margin-bottom: 0.5rem;
+}
+
+#player-hand {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1rem;
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+  .form-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .form-left {
+    width: 50%;
+  }
+
+  .form-right {
+    width: 50%;
+  }
+}
+/*
+*
+*
+*/
+
 .App {
   text-align: center;
+  height: inherit;
 }
 
 .App-logo {
@@ -35,4 +172,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+html {
+  height: 100%;
+  background-color: rgb(42, 59, 141);
+
+}
+body {
+  height: inherit;
+}
+#root {
+  height: inherit;
 }
