@@ -21,7 +21,7 @@ const HigherOrLower = (props) => {
       <div style={{
         display: props.currentResult === null ? 'block' : 'none'
       }}>
-        <Typography variant="h5">
+        <Typography variant="h5" className="prompt-text">
           Higher or Lower?
         </Typography>
         <div className={"rob-btn-container"}>

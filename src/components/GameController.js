@@ -7,6 +7,8 @@ import RedOrBlack from "./RedOrBlack";
 import Hand from "./Hand";
 import HigherOrLower from "./HigherOrLower";
 import InBetweenOrOutside from "./InBetweenOrOutside";
+import GuessTheSuit from "./GuessTheSuit";
+import FinalRound from "./FinalRound";
 
 const GameController = () => {
   const gameState = useSelector(state => state.gameReducer);
@@ -27,21 +29,12 @@ const GameController = () => {
       ) : (
         <Paper>
           <div id="game-container">
-            <Typography className="game-title" variant="h5">
+            <Typography className="game-title" variant="h5" style={{marginBottom: "1rem"}}>
               Up the River, Down the River
             </Typography>
-            <div className="player-display">
-              <Typography variant="body1" style={{fontWeight: 700}}>
-                Current player:
-                <span style={{ paddingLeft: '0.5rem', fontWeight: 300 }}>
-                  {gameState.players[gameState.turn].name}
-                </span>
-              </Typography>
-              <Typography variant="body1" style={{fontWeight: 700}}>
-                Round:
-                <span style={{ paddingLeft: '0.5rem', fontWeight: 300 }}>
-                  {gameState.round + 1}
-                </span>
+            <div className={"player-display"}>
+              <Typography variant="h6" style={{fontWeight: 400}}>
+                Round {gameState.round + 1}
               </Typography>
             </div>
             {gameState.round === 0 && (
@@ -53,12 +46,28 @@ const GameController = () => {
             {gameState.round === 2 && (
               <InBetweenOrOutside/>
             )}
-            {gameState.round > 0 && (
-              <div className="hand-container">
-                <Typography variant="body1">Current hand:</Typography>
-                <Hand />
-              </div>
+            {gameState.round === 3 && (
+              <GuessTheSuit/>
             )}
+            {gameState.round === 4 && (
+              <FinalRound/>
+            )}
+            <div className="player-display">
+              {gameState.round !== 4 && (
+                <Typography variant="body1" style={{fontWeight: 700}}>
+                  Current player:
+                  <span style={{ paddingLeft: '0.5rem', fontWeight: 300 }}>
+                      {gameState.players[gameState.turn].name}
+                    </span>
+                </Typography>
+              )}
+              {(gameState.round > 0 && gameState.round < 4) && (
+                  <div className="hand-container">
+                    <Typography variant="body1">Current hand:</Typography>
+                    <Hand player={gameState.players[gameState.turn]}/>
+                  </div>
+              )}
+            </div>
           </div>
         </Paper>
       )}

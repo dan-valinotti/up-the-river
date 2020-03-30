@@ -1,7 +1,7 @@
 import {
   cardValues,
   redOrBlack,
-  higherOrLower, inBetweenOrOutside,
+  higherOrLower, inBetweenOrOutside, cardHasSuit, dealFinalRound,
 } from "../../util";
 
 function removePlayer(players, name) {
@@ -41,6 +41,10 @@ const gameReducer = (initState = {
   round: 0,
   currentResult: null,
   dealerCard: "",
+  finalRoundCards: [],
+  finalRoundTurn: 0,
+  notifiedPlayers: [],
+  drinkCount: 2,
 }, action) => {
   switch (action.type) {
     case 'CREATE_GAME':
@@ -65,7 +69,7 @@ const gameReducer = (initState = {
       };
     case 'INCREMENT_TURN':
       // If the player is the last in the list, go to next round
-      if (initState.turn === initState.players.length - 1) {
+      if (initState.turn === initState.players.length - 1 && initState.round !== 4) {
         return {
           ...initState,
           turn: 0,
@@ -124,6 +128,35 @@ const gameReducer = (initState = {
       return {
         ...initState,
         currentResult: resultInOrOut,
+      };
+    case 'GUESS_SUIT':
+      const resultSuit = cardHasSuit(
+        action.payload.suit,
+        initState.dealerCard,
+      );
+      return {
+        ...initState,
+        currentResult: resultSuit,
+      };
+    case 'DEAL_FINAL_ROUND':
+      const { newDeck, finalCards } = dealFinalRound(
+        initState.deck,
+      );
+      return {
+        ...initState,
+        deck: newDeck,
+        finalRoundCards: finalCards,
+      };
+    case 'NEXT_TURN_FINAL_ROUND':
+      return {
+        ...initState,
+        finalRoundTurn: initState.finalRoundTurn + 1,
+        drinkCount: Math.ceil((initState.finalRoundTurn - 0.5) * 2)
+      };
+    case 'NOTIFY_PLAYERS':
+      return {
+        ...initState,
+        notifiedPlayers: action.payload,
       };
     default:
       return initState;

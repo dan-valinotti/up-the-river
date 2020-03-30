@@ -25,6 +25,7 @@ const CreateGameForm = (props) => {
       payload: {
         name: playerName,
         hand: [],
+        multiplier: 1,
       }
     });
     setPlayerName("");

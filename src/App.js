@@ -7,7 +7,7 @@ import GameController from "./components/GameController";
 function App() {
   return (
     <div className="App">
-      <Container maxWidth="sm" id="game-root">
+      <Container style={{maxWidth: 800}} id="game-root">
         <GameController/>
       </Container>
     </div>

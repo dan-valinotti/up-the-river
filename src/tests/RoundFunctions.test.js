@@ -1,4 +1,4 @@
-import { higherOrLower, inBetweenOrOutside } from "../util";
+import {cardHasSuit, higherOrLower, inBetweenOrOutside} from "../util";
 
 it("Test inOrOut - inbetween, correct", () => {
   // Player - C2, H4, guess in between
@@ -33,4 +33,14 @@ it("Test inOrOut - outside, incorrect", () => {
   const playerCards = ["C2", "D2", "H4"];
   const dealerCard = "D2";
   expect(inBetweenOrOutside(false, playerCards, dealerCard)).toEqual(-1);
+});
+it("Test guessTheSuit - hearts, correct", () => {
+  const dealerCard = "H2";
+  const suit = "H";
+  expect(cardHasSuit(suit, dealerCard)).toEqual(true);
+});
+it("Test guessTheSuit - hearts, incorrect", () => {
+  const dealerCard = "D2";
+  const suit = "H";
+  expect(cardHasSuit(suit, dealerCard)).toEqual(false);
 });

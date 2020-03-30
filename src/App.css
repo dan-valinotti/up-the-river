@@ -47,12 +47,50 @@
 }
 
 .game-title {
-  padding-bottom: 2rem;
-  font-weight: 700;
+  padding-bottom: 0;
+  margin-bottom: 2rem !important;
+}
+
+.player-display h6 {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .next-turn-btn {
   margin-top: 1rem !important
+}
+
+.prompt-text {
+  margin-bottom: 1rem !important;
+}
+
+.player-hand-display {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 100%;
+  width: 100%;
+}
+
+.rob-btn-container {
+  margin-bottom: 1rem;
+}
+
+#final-cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.cards-center {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 50% 50%;
+  grid-row-gap: 0.5rem;
+}
+
+.cards-center .card-display {
+  flex-basis: 20%;
 }
 
 #rob {
@@ -86,6 +124,7 @@
 .card-container {
   height: 100%;
   width: auto;
+  cursor: pointer;
 }
 
 .result-display {
@@ -97,6 +136,22 @@
 .card-container img {
   width: 100%;
   height: inherit;
+}
+
+.card-display {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: all 0.25s ease-in !important;
+  transform-style: preserve-3d;
+}
+
+.flipping-card {
+  /*opacity: 0 !important;*/
+  transform: rotateX(90deg) !important;
+}
+
+.notified-players {
+  margin-top: 1rem;
 }
 
 .result-text {

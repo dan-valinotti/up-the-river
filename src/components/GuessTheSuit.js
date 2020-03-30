@@ -5,52 +5,69 @@ import Button from "@material-ui/core/Button";
 import Card from "./Card";
 import * as GameActions from "../redux/actions/gameActions";
 
-const InBetweenOrOutside = (props) => {
-  const { dealCard, guessInOrOut, nextTurn } = props;
+const HigherOrLower = (props) => {
+  const { dealCard, guessTheSuit, nextTurn, dealFinalRound } = props;
 
-  const guess = (inBetween) => {
+  const guess = (suit) => {
     dealCard({ player: props.players[props.turn] });
-    guessInOrOut({
-      inBetween,
-      playerCards: props.players[props.turn].hand,
+    guessTheSuit({
+      suit,
+      dealerCard: props.dealerCard,
     });
+    dealFinalRound();
   };
 
   return (
-    <div id={"in-or-out"} style={{ marginTop: "1rem", marginBottom: "1rem"}}>
+    <div id={"hol"}>
       <div style={{
-        display: props.currentResult === null ? 'block' : 'none',
+        display: props.currentResult === null ? 'block' : 'none'
       }}>
         <Typography variant="h5" className="prompt-text">
-          In-between or Outside?
+          Guess the suit...
         </Typography>
         <div className={"rob-btn-container"}>
           <Button
-            onClick={() => guess(true)}
-            id={"green-btn"}
-            variant={"contained"}
-            color={"primary"}
-          >
-            In-between
-          </Button>
-          <Button
-            onClick={() => guess(false)}
+            onClick={() => guess("H")}
             id={"red-btn"}
             variant={"contained"}
             color={"primary"}
           >
-            Outside
+            Hearts
+          </Button>
+          <Button
+            onClick={() => guess("D")}
+            id={"red-btn"}
+            variant={"contained"}
+            color={"primary"}
+          >
+            Diamonds
+          </Button>
+          <Button
+            onClick={() => guess("C")}
+            id={"black-btn"}
+            variant={"contained"}
+            color={"primary"}
+          >
+            Clubs
+          </Button>
+          <Button
+            onClick={() => guess("S")}
+            id={"black-btn"}
+            variant={"contained"}
+            color={"primary"}
+          >
+            Spades
           </Button>
         </div>
       </div>
       <div className="result-display" style={{
-        display: props.currentResult === null ? 'none' : 'flex',
+        display: props.currentResult === null ? 'none' : 'flex'
       }}>
         <Card cardValue={props.dealerCard} width={200} height={280} raised={true}/>
         <Typography variant={"h6"} className="result-text">
-          {props.currentResult === 1
-            ? "Correct! Give 6"
-            : `Incorrect! Take ${Math.abs(6 * (props.currentResult - 1))}`
+          {props.currentResult
+            ? "Correct! Give 8"
+            : `Incorrect! Take 8`
           }
         </Typography>
       </div>
@@ -60,20 +77,21 @@ const InBetweenOrOutside = (props) => {
         </Button>
       )}
     </div>
-  );
+  )
 };
 
 const mapStateToProps = state => ({
   players: state.gameReducer.players,
   turn: state.gameReducer.turn,
   currentResult: state.gameReducer.currentResult,
-  dealerCard: state.gameReducer.dealerCard
+  dealerCard: state.gameReducer.dealerCard,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dealCard: (payload) => dispatch(GameActions.dealCard(payload)),
-  guessInOrOut: (payload) => dispatch(GameActions.guessInOrOut(payload)),
+  guessTheSuit: (payload) => dispatch(GameActions.guessTheSuit(payload)),
   nextTurn: () => dispatch(GameActions.incrementTurn()),
+  dealFinalRound: () => dispatch(GameActions.dealFinalRound()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(InBetweenOrOutside);
+export default connect(mapStateToProps, mapDispatchToProps)(HigherOrLower);

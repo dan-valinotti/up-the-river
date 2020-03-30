@@ -18,7 +18,7 @@ const RedOrBlack = (props) => {
       <div style={{
         display: props.currentResult === null ? 'block' : 'none'
       }}>
-        <Typography variant="h6" style={{marginBottom: "1rem"}}>
+        <Typography variant="h6" className="prompt-text">
           Red or Black?
         </Typography>
         <div className={"rob-btn-container"}>

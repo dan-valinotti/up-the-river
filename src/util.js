@@ -14,10 +14,10 @@ export function getRoundComparator(round) {
 }
 
 export const cardValues = [
-  "Sa", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S2", "Sj", "Sq", "Sk",
-  "Ha", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H2", "Hj", "Hq", "Hk",
-  "Da", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D2", "Dj", "Dq", "Dk",
-  "Ca", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C2", "Cj", "Cq", "Ck",
+  "Sa", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "Sj", "Sq", "Sk",
+  "Ha", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "Hj", "Hq", "Hk",
+  "Da", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "Dj", "Dq", "Dk",
+  "Ca", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "Cj", "Cq", "Ck",
 ];
 
 // Checks if player guess of red or black is correct
@@ -88,7 +88,7 @@ function orderCards(playerCards) {
 }
 
 // Gets number value of a card
-function getCardValue(card) {
+export function getCardValue(card) {
   if (card[1] === "a") {
     return 14;
   } else if (card[1] === "k") {
@@ -104,4 +104,13 @@ function getCardValue(card) {
 
 export function getCardImage(card) {
   return require(`./images/${card}.png`);
+}
+
+export function dealFinalRound(deck) {
+  let newDeck = deck;
+  let cards = [];
+  for (let i = 0; i < 10; i++) {
+    cards.push(newDeck.pop());
+  }
+  return { newDeck, finalCards: cards};
 }

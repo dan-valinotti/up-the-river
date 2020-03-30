@@ -37,3 +37,17 @@ export const guessInOrOut = (payload) => ({
   type: 'GUESS_IN_OR_OUT',
   payload,
 });
+export const guessTheSuit = (payload) => ({
+  type: 'GUESS_SUIT',
+  payload,
+});
+export const dealFinalRound = () => ({
+  type: 'DEAL_FINAL_ROUND',
+});
+export const nextTurnFinalRound = () => ({
+  type: 'NEXT_TURN_FINAL_ROUND',
+});
+export const notifyPlayers = (payload) => ({
+  type: 'NOTIFY_PLAYERS',
+  payload,
+});
