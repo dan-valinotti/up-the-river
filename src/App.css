@@ -20,7 +20,27 @@
   align-items: center;
   width: 100%;
   max-width: 600px;
+
   margin: 0 auto;
+}
+
+.final-round-card {
+  margin: 0 auto;
+}
+
+@media (max-width: 425px) {
+  .final-round-card {
+    max-width: 50px !important;
+    max-height: 75px;
+  }
+}
+
+@media (max-width: 375px) {
+  .final-round-card {
+    max-width: 35px !important;
+    max-height: 53px;
+    max-width: 100%;
+  }
 }
 
 .form-left {
@@ -75,11 +95,19 @@
 }
 
 #final-cards {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 17% 67% 17%;
   padding: 2rem 0;
+}
+
+.cards-left, .cards-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-left div, .cards-right div {
+  margin: 0 !important;
 }
 
 .cards-center {
@@ -114,7 +142,7 @@
 }
 
 .card-display {
-  margin: 0 0.5rem;
+  /* margin: 0 0.5rem; */
 }
 
 .card-container {

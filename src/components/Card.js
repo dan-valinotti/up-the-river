@@ -14,6 +14,7 @@ const Card = ({
   players,
   notifyPlayers,
   nextFinalTurn,
+  round,
 }) => {
   const [flipped, setFlipped] = useState(false);
   const [flipping, setFlipping] = useState(false);
@@ -51,7 +52,7 @@ const Card = ({
 
   return (
     <MaterialCard
-      className={`card-display ${flipping && 'flipping-card'}`}
+      className={`${round === 4 && 'final-round-card'} card-display ${flipping && 'flipping-card'}`}
       raised={raised}
       style={{width: width, height: height}}
     >
@@ -73,6 +74,7 @@ const Card = ({
 
 const mapStateToProps = state => ({
   players: state.gameReducer.players,
+  round: state.gameReducer.round,
 });
 
 const mapDispatchToProps = (dispatch) => ({
