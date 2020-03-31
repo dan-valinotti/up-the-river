@@ -48,10 +48,6 @@ export function higherOrLower(isHigher, playerCards, dealerCard) {
 export function inBetweenOrOutside(isInBetween, playerCards, dealerCard) {
   let bounds = orderCards(playerCards);
   for (let i = 0; i < bounds.length; i++) {
-    // if (!isInBetween) {
-    //   console.log(dealerCard, bounds[i], dealerCard !== bounds[i]);
-    //   console.log(getCardValue(dealerCard) === getCardValue(bounds[i]));
-    // }
     if (
       dealerCard !== bounds[i]
         &&
@@ -97,6 +93,8 @@ export function getCardValue(card) {
     return 12;
   } else if (card[1] === "j") {
     return 11;
+  } else if (card[1] === "1") {
+    return 10;
   } else {
     return parseInt(card[1]);
   }

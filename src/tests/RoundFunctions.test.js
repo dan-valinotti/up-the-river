@@ -1,5 +1,25 @@
 import {cardHasSuit, higherOrLower, inBetweenOrOutside} from "../util";
 
+it("Test highOrLow - higher, incorrect", () => {
+  const playerCards = ["D10", "C3"];
+  const dealerCard = "C3";
+  expect(higherOrLower(true, playerCards, dealerCard)).toEqual(0);
+});
+it("Test highOrLow - higher, correct", () => {
+  const playerCards = ["D10", "Cq"];
+  const dealerCard = "Cq";
+  expect(higherOrLower(true, playerCards, dealerCard)).toEqual(1);
+});
+it("Test highOrLow - lower, incorrect", () => {
+  const playerCards = ["D10", "Cq"];
+  const dealerCard = "Cq";
+  expect(higherOrLower(false, playerCards, dealerCard)).toEqual(0);
+});
+it("Test highOrLow - lower, correct", () => {
+  const playerCards = ["D10", "C3"];
+  const dealerCard = "C3";
+  expect(higherOrLower(false, playerCards, dealerCard)).toEqual(1);
+});
 it("Test inOrOut - inbetween, correct", () => {
   // Player - C2, H4, guess in between
   const playerCards = ["C2", "D3", "H4"];
