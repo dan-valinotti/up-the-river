@@ -50,6 +50,14 @@ const CreateGameForm = (props) => {
     }
   };
 
+  const updateAceValue = (isAceHigh) => {
+    setAceHigh(isAceHigh);
+    dispatch({
+      type: 'SET_ACE_VALUE',
+      payload: isAceHigh ? 14 : 1
+    });
+  };
+
   return (
     <Card className="form-card">
       <Typography className="game-title" variant="h5">
@@ -98,13 +106,13 @@ const CreateGameForm = (props) => {
         <Typography variant="h6">What is Ace valued as?</Typography>
         <ButtonGroup className="ace-value-group" color="secondary">
           <Button
-            onClick={() => setAceHigh(false)}
+            onClick={() => updateAceValue(false)}
             variant={aceHigh ? "outlined" : "contained"}
           >
             1
           </Button>
           <Button
-            onClick={() => setAceHigh(true)}
+            onClick={() => updateAceValue(true)}
             variant={!aceHigh ? "outlined" : "contained"}
           >
             14

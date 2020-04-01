@@ -36,6 +36,7 @@ const gameReducer = (initState = {
   finalRoundTurn: 0,
   notifiedPlayers: [],
   drinkCount: 2,
+  aceValue: 1,
 }, action) => {
   switch (action.type) {
     case 'CREATE_GAME':
@@ -105,6 +106,7 @@ const gameReducer = (initState = {
         action.payload.isHigher,
         action.payload.playerCards,
         initState.dealerCard,
+        initState.aceValue
       );
       return {
         ...initState,
@@ -115,6 +117,7 @@ const gameReducer = (initState = {
         action.payload.inBetween,
         action.payload.playerCards,
         initState.dealerCard,
+        initState.aceValue
       );
       return {
         ...initState,
@@ -132,6 +135,7 @@ const gameReducer = (initState = {
     case 'DEAL_FINAL_ROUND':
       const { newDeck, finalCards } = dealFinalRound(
         initState.deck,
+        initState.aceValue,
       );
       return {
         ...initState,
@@ -148,6 +152,11 @@ const gameReducer = (initState = {
       return {
         ...initState,
         notifiedPlayers: action.payload,
+      };
+    case 'SET_ACE_VALUE':
+      return {
+        ...initState,
+        aceValue: action.payload,
       };
     default:
       return initState;

@@ -51,3 +51,7 @@ export const notifyPlayers = (payload) => ({
   type: 'NOTIFY_PLAYERS',
   payload,
 });
+export const setAceValue = (payload) => ({
+  type: 'SET_ACE_VALUE',
+  payload,
+});

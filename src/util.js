@@ -29,29 +29,29 @@ export function redOrBlack(isRed, dealerCard) {
 
 // isHigher - if true, player guessed higher, if false player guessed lower
 // Returns 1 if player is correct, 0 if player is wrong, -1 if cards are equal
-export function higherOrLower(isHigher, playerCards, dealerCard) {
-  if (getCardValue(playerCards[0]) === getCardValue(dealerCard)) {
+export function higherOrLower(isHigher, playerCards, dealerCard, aceValue) {
+  if (getCardValue(playerCards[0], aceValue) === getCardValue(dealerCard), aceValue) {
     return -1;
   }
   if (isHigher) {
-    if (getCardValue(playerCards[0]) < getCardValue(dealerCard)) {
+    if (getCardValue(playerCards[0], aceValue) < getCardValue(dealerCard), aceValue) {
       return 1;
     } return 0;
   } else {
-    if (getCardValue(playerCards[0]) > getCardValue(dealerCard)) {
+    if (getCardValue(playerCards[0], aceValue) > getCardValue(dealerCard), aceValue) {
       return 1;
     } return 0;
   }
 }
 
 // Returns 1 if in between/outside, 0 if not, and -1 if equal to a card
-export function inBetweenOrOutside(isInBetween, playerCards, dealerCard) {
-  let bounds = orderCards(playerCards);
+export function inBetweenOrOutside(isInBetween, playerCards, dealerCard, aceValue) {
+  let bounds = orderCards(playerCards, aceValue);
   for (let i = 0; i < bounds.length; i++) {
     if (
       dealerCard !== bounds[i]
         &&
-      getCardValue(dealerCard) === getCardValue(bounds[i])
+      getCardValue(dealerCard, aceValue) === getCardValue(bounds[i], aceValue)
     ) {
       return -1;
     }
@@ -73,20 +73,20 @@ export function cardHasSuit(suit, dealerCard) {
 }
 
 // Creates bounds for inBetweenOrOutside()
-function orderCards(playerCards) {
+function orderCards(playerCards, aceValue) {
   return playerCards.sort((card1, card2) => {
-    if (getCardValue(card1) > getCardValue(card2)) {
+    if (getCardValue(card1, aceValue) > getCardValue(card2, aceValue)) {
       return 1;
-    } else if (getCardValue(card1) < getCardValue(card2)) {
+    } else if (getCardValue(card1, aceValue) < getCardValue(card2, aceValue)) {
       return -1;
     } return 0;
   });
 }
 
 // Gets number value of a card
-export function getCardValue(card) {
+export function getCardValue(card, aceValue) {
   if (card[1] === "a") {
-    return 14;
+    return aceValue;
   } else if (card[1] === "k") {
     return 13;
   } else if (card[1] === "q") {

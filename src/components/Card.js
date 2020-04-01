@@ -15,6 +15,7 @@ const Card = ({
   notifyPlayers,
   nextFinalTurn,
   round,
+  aceValue,
 }) => {
   const [flipped, setFlipped] = useState(false);
   const [flipping, setFlipping] = useState(false);
@@ -30,7 +31,9 @@ const Card = ({
 
       for (let i = 0; i < players.length; i++) {
         for (let j = 0; j < players[i].hand.length; j++) {
-          if (players[i].hand[j] && getCardValue(players[i].hand[j]) === getCardValue(cardValue)) {
+          if (players[i].hand[j]
+            && getCardValue(players[i].hand[j], aceValue) === getCardValue(cardValue, aceValue)
+          ) {
             if (notifiedPlayers.indexOf(players[i]) === -1) {
               notifiedPlayers.push(players[i]);
             } else {
@@ -75,6 +78,7 @@ const Card = ({
 const mapStateToProps = state => ({
   players: state.gameReducer.players,
   round: state.gameReducer.round,
+  aceValue: state.gameReducer.aceValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({
