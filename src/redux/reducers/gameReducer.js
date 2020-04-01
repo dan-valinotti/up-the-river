@@ -6,15 +6,19 @@ import {
 
 function removePlayer(players, name) {
   let index = -1;
-  for (let i=0; i < players.length; i++) {
-    if (players[i].name === name) {
-      index = i;
-      break;
-    }
-  }
-  if (index !== -1) {
-    return players.splice(index, 1);
-  } return players;
+  // for (let i=0; i < players.length; i++) {
+  //   console.log(players[i].name, name, players[i].name === name);
+  //   if (players[i].name === name) {
+  //     index = i;
+  //   }
+  // }
+  console.log(index, players);
+  return players.filter((player) => player.name !== name);
+  // if (index !== -1) {
+  //   // return players.slice(0, index).concat(players.slice(-index));
+  //   players.splice(index, 1);
+  // } return players;
+
 }
 
 function shuffleDeck(array) {

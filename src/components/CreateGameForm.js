@@ -8,9 +8,11 @@ import Card from "@material-ui/core/Card";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete } from "@material-ui/icons";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const CreateGameForm = (props) => {
   const [playerName, setPlayerName] = useState("");
+  const [aceHigh, setAceHigh] = useState(false);
 
   const gameState = useSelector(state => state.gameReducer);
   const dispatch = useDispatch();
@@ -41,9 +43,11 @@ const CreateGameForm = (props) => {
   };
 
   const startGame = () => {
-    dispatch({
-      type: 'CREATE_GAME',
-    });
+    if (gameState.players.length > 0) {
+      dispatch({
+        type: 'CREATE_GAME',
+      });
+    }
   };
 
   return (
@@ -91,6 +95,21 @@ const CreateGameForm = (props) => {
         </div>
       </div>
       <div className="submit">
+        <Typography variant="h6">What is Ace valued as?</Typography>
+        <ButtonGroup className="ace-value-group" color="secondary">
+          <Button
+            onClick={() => setAceHigh(false)}
+            variant={aceHigh ? "outlined" : "contained"}
+          >
+            1
+          </Button>
+          <Button
+            onClick={() => setAceHigh(true)}
+            variant={!aceHigh ? "outlined" : "contained"}
+          >
+            14
+          </Button>
+        </ButtonGroup>
         <Button variant="contained" color="primary" onClick={() => startGame()}>
           Start Game
         </Button>

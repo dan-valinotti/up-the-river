@@ -43,6 +43,10 @@
   }
 }
 
+.ace-value-group {
+  margin: 1rem 0;
+}
+
 .form-left {
   margin: 10px;
   width: 66%;
@@ -64,6 +68,10 @@
 
 .submit {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-title {
