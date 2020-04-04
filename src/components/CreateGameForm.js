@@ -103,7 +103,7 @@ const CreateGameForm = (props) => {
         </div>
       </div>
       <div className="submit">
-        <Typography variant="h6">What is Ace valued as?</Typography>
+        {/* <Typography variant="h6">What is Ace valued as?</Typography>
         <ButtonGroup className="ace-value-group" color="secondary">
           <Button
             onClick={() => updateAceValue(false)}
@@ -117,7 +117,7 @@ const CreateGameForm = (props) => {
           >
             14
           </Button>
-        </ButtonGroup>
+        </ButtonGroup> */}
         <Button variant="contained" color="primary" onClick={() => startGame()}>
           Start Game
         </Button>

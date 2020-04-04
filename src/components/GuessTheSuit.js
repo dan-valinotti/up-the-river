@@ -6,7 +6,7 @@ import Card from "./Card";
 import * as GameActions from "../redux/actions/gameActions";
 
 const HigherOrLower = (props) => {
-  const { dealCard, guessTheSuit, nextTurn, dealFinalRound } = props;
+  const { dealCard, guessTheSuit, nextTurn } = props;
 
   const guess = (suit) => {
     dealCard({ player: props.players[props.turn] });
@@ -14,7 +14,6 @@ const HigherOrLower = (props) => {
       suit,
       dealerCard: props.dealerCard,
     });
-    dealFinalRound();
   };
 
   return (
@@ -91,7 +90,6 @@ const mapDispatchToProps = (dispatch) => ({
   dealCard: (payload) => dispatch(GameActions.dealCard(payload)),
   guessTheSuit: (payload) => dispatch(GameActions.guessTheSuit(payload)),
   nextTurn: () => dispatch(GameActions.incrementTurn()),
-  dealFinalRound: () => dispatch(GameActions.dealFinalRound()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HigherOrLower);

@@ -30,15 +30,15 @@ export function redOrBlack(isRed, dealerCard) {
 // isHigher - if true, player guessed higher, if false player guessed lower
 // Returns 1 if player is correct, 0 if player is wrong, -1 if cards are equal
 export function higherOrLower(isHigher, playerCards, dealerCard, aceValue) {
-  if (getCardValue(playerCards[0], aceValue) === getCardValue(dealerCard), aceValue) {
+  if (getCardValue(playerCards[0], aceValue) === getCardValue(dealerCard, aceValue)) {
     return -1;
   }
   if (isHigher) {
-    if (getCardValue(playerCards[0], aceValue) < getCardValue(dealerCard), aceValue) {
+    if (getCardValue(playerCards[0], aceValue) < getCardValue(dealerCard, aceValue)) {
       return 1;
     } return 0;
   } else {
-    if (getCardValue(playerCards[0], aceValue) > getCardValue(dealerCard), aceValue) {
+    if (getCardValue(playerCards[0], aceValue) > getCardValue(dealerCard, aceValue)) {
       return 1;
     } return 0;
   }
@@ -86,7 +86,7 @@ function orderCards(playerCards, aceValue) {
 // Gets number value of a card
 export function getCardValue(card, aceValue) {
   if (card[1] === "a") {
-    return aceValue;
+    return 14;
   } else if (card[1] === "k") {
     return 13;
   } else if (card[1] === "q") {
